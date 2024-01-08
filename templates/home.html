@@ -16,11 +16,12 @@
     <img src= "{{ value.gameWeek[0]['games'][0]['homeTeam']['logo'] }}" width="30" height="30">
     <img src= "{{ value.gameWeek[0]['games'][0]['awayTeam']['logo'] }}" width="30" height="30">
     -->
+  
     <script>
-      var num_games = {{ length }};
+      var num_games = ' {{ length }}';
 
       for (var i = 0; i < num_games; i++) {
-        document.getElementById("games").innerHTML += {{ value.gameWeek[0]['games'][0]['awayTeam']['placeName']['default'] }};
+        document.getElementById("games").innerHTML += `{{ value.gameWeek[0]['games'][3]['awayTeam']['placeName']['default'] }}` + "<br>";
       }
     </script>
     

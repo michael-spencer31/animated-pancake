@@ -20,8 +20,20 @@ def home():
     return render_template("home.html", value=data, length=items)
 
 @app.route("/about")
+@cross_origin()
 def about():
-    return render_template("about.html")
+
+    url = "https://api-web.nhle.com/v1/standings/now"
+
+    resp = requests.get(url)
+    data = resp.json()
+
+    return render_template("about.html", value=data)
+
+@app.route("/info")
+@cross_origin()
+def info():
+    return render_template("info.html")
 
 
 if __name__ == "__main__":
