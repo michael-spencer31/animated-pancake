@@ -7,9 +7,10 @@
   <body>
     {% extends "template.html" %}
     {% block content %}
+    <h1> My First Try Using Flask </h1>
+
     <p id="games"></p>
     
-    <h1> My First Try Using Flask </h1>
     <!---
     <p> {{ value.gameWeek[0]['games'][0]['awayTeam']['placeName']['default'] }} </p>
     <p> {{ value.gameWeek[0]['games'][0]['homeTeam']['placeName']['default'] }} </p>
@@ -18,10 +19,11 @@
     -->
   
     <script>
-      var num_games = ' {{ length }}';
-
+      var num_games = ' {{ length }} ';
+      var data = JSON.parse(' {{ value | tojson | safe}}');
       for (var i = 0; i < num_games; i++) {
-        document.getElementById("games").innerHTML += `{{ value.gameWeek[0]['games'][3]['awayTeam']['placeName']['default'] }}` + "<br>";
+        document.getElementById("games").innerHTML += data.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + 
+         " vs. " + data.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>";
       }
     </script>
     

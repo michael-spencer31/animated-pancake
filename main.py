@@ -15,7 +15,6 @@ def home():
 
     resp = requests.get(url)
     data = resp.json()
-    away = data['gameWeek'][0]['games'][0]['homeTeam']['placeName']['default']
     items = len(data['gameWeek'][0]['games'])
     return render_template("home.html", value=data, length=items)
 
