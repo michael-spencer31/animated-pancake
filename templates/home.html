@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Flask Tutorial</title>
+  </head>
+  <body>
+    {% extends "template.html" %}
+    {% block content %}
+    <p id="games"></p>
+    
+    <h1> My First Try Using Flask </h1>
+    <!---
+    <p> {{ value.gameWeek[0]['games'][0]['awayTeam']['placeName']['default'] }} </p>
+    <p> {{ value.gameWeek[0]['games'][0]['homeTeam']['placeName']['default'] }} </p>
+    <img src= "{{ value.gameWeek[0]['games'][0]['homeTeam']['logo'] }}" width="30" height="30">
+    <img src= "{{ value.gameWeek[0]['games'][0]['awayTeam']['logo'] }}" width="30" height="30">
+    -->
+    <script>
+      var num_games = {{ length }};
+
+      for (var i = 0; i < num_games; i++) {
+        document.getElementById("games").innerHTML += {{ value.gameWeek[0]['games'][0]['awayTeam']['placeName']['default'] }};
+      }
+    </script>
+    
+    {% endblock %}
+  </body>
+</html>
