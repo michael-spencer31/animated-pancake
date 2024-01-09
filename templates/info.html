@@ -3,12 +3,59 @@
   <head>
     <meta charset="utf-8">
     <title>Hello, World!</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
   </head>
   <body>
     {% extends "template.html" %}
     {% block content %}
     
     <h1> Info </h1>
+    <p id="info"></p>
+    <img id="hero">
+    <input type="text" id="player"><br><br>
+    <button id="submit" onclick="sendData()">Search</button>
+
+    <div id="output"></div>
+
+    <script>
+
+        function sendData () {
+            var data = JSON.parse(' {{ value | tojson | safe}}');
+            //document.getElementById("info").innerHTML = "<img src=" + data.heroImage + ">";
+
+            const player_name = document.getElementById("player").value;
+            console.log(player_name);
+            
+            $.ajax({
+                url: '/process',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ 'value': player_name }),
+                success: function(response) {
+                    document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
+                    document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
+                    document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70>";
+
+                    document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
+
+                    document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
+                    document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
+                    document.getElementById('output').innerHTML += "Games Played: " + response.result.featuredStats['regularSeason']['subSeason']['gamesPlayed'] + "<br>";
+                    document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
+                    document.getElementById('output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['subSeason']['assists'] + "<br>";
+                    document.getElementById('output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['subSeason']['points'] + "<br>";
+
+
+
+
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+       
+    </script>
       
     {% endblock %}
   </body>

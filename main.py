@@ -1,4 +1,4 @@
-from flask import Flask, render_template, jsonify
+from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
 import requests
 
@@ -32,7 +32,23 @@ def about():
 @app.route("/info")
 @cross_origin()
 def info():
-    return render_template("info.html")
+
+    url = "https://api-web.nhle.com/v1/player/8479407/landing"
+    resp = requests.get(url)
+    data = resp.json()
+
+    return render_template("info.html", value=data)
+
+@app.route('/process', methods=['POST'])
+@cross_origin()
+def process():
+    data = request.get_json()
+    url = "https://api-web.nhle.com/v1/player/" + data['value'] + "/landing"
+
+    resp = requests.get(url)
+    info = resp.json()
+
+    return jsonify(result=info)
 
 
 if __name__ == "__main__":

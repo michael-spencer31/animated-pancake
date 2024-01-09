@@ -35,11 +35,11 @@ li a:hover:not(.active) {
 }
   
 .active {
-	background-color: #04AA6D;
+	background-color: #326fa8;
 }
 
 li {
-	border-right: 1px solid #bbb;
+	border-right: 1px solid #332f2f;
 }
 
 li:last-child {
