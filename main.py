@@ -39,6 +39,17 @@ def info():
 
     return render_template("info.html", value=data)
 
+@app.route("/standings")
+@cross_origin()
+def getStandings():
+
+    url = "https://api-web.nhle.com/v1/standings/now"
+    resp = requests.get(url)
+
+    data = resp.json()
+
+    return render_template("standings.html", value=data)
+
 @app.route('/process', methods=['POST'])
 @cross_origin()
 def process():

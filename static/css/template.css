@@ -45,3 +45,19 @@ li {
 li:last-child {
 	border-right: none;
 }
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th, td {
+	border: 1px solid #ddd;
+	padding: 8px;
+	text-align: left;
+}
+
+th {
+	background-color: #326fa8;
+	color: white;
+}
