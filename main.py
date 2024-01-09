@@ -54,12 +54,27 @@ def getStandings():
 @cross_origin()
 def process():
     data = request.get_json()
-    url = "https://api-web.nhle.com/v1/player/" + data['value'] + "/landing"
+    player_id = getPlayerName(data['value'])
+
+    url = "https://api-web.nhle.com/v1/player/" + player_id + "/landing"
 
     resp = requests.get(url)
     info = resp.json()
 
     return jsonify(result=info)
+
+def getPlayerName(player):
+
+    player = player.upper()
+
+    player_dict = {
+        "SIDNEY CROSBY": "8471675",
+        "KRIS LETANG": "8471724",
+        "NICK SUZUKI": "8480018",
+        "COLE CAUFIELD": "8481540",
+        "FILIP MESAR": "8483488"
+    }
+    return player_dict[player]
 
 
 if __name__ == "__main__":

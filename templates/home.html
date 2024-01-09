@@ -10,13 +10,6 @@
     <h1> Today's Schedule </h1>
 
     <p id="games"></p>
-    
-    <!---
-    <p> {{ value.gameWeek[0]['games'][0]['awayTeam']['placeName']['default'] }} </p>
-    <p> {{ value.gameWeek[0]['games'][0]['homeTeam']['placeName']['default'] }} </p>
-    <img src= "{{ value.gameWeek[0]['games'][0]['homeTeam']['logo'] }}" width="30" height="30">
-    <img src= "{{ value.gameWeek[0]['games'][0]['awayTeam']['logo'] }}" width="30" height="30">
-    -->
   
     <script>
       var num_games = ' {{ length }} ';
@@ -24,8 +17,23 @@
       var data = JSON.parse(' {{ value | tojson | safe}}');
 
       for (var i = 0; i < num_games; i++) {
-        document.getElementById("games").innerHTML += data.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + 
-         " vs. " + data.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>";
+        document.getElementById("games").innerHTML +=  "<img src='" + data.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+        data.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
+           "<img src='" + data.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+          data.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
+          convertTime(data, i) 
+          + "<br><br>";
+      }
+      //function to convert UTC time to users local time zone
+      function convertTime (data, num) {
+
+        var utc = data.gameWeek[0]['games'][num]['startTimeUTC'];
+        var date = new Date(utc);
+        var local_time = new Date(date.toString());
+        var start24 = local_time.getHours() + ":" + local_time.getMinutes() + "0";
+
+        return start24;
+        
       }
     </script>
     

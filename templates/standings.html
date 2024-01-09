@@ -15,17 +15,18 @@
         
 
         let table = '<table>';
-        table += '<tr><th>Name</th><th>Points</th><th>Wins</th><th>Losses</th><th>OTL</th><tr>';
+        table += '<tr><th>Name</th><th>GP</th><th>Points</th><th>Wins</th><th>Losses</th><th>OTL</th><tr>';
         
-        var data = JSON.parse(' {{ value | tojson | safe}}');
+        var data = JSON.parse(' {{ value | tojson | safe}} ');
 
         for (var i = 0; i < 32; i++) {
             //document.getElementById("standings").innerHTML += data.standings[i].teamName.default + "<br>";
             table += `<tr><td> ${"<img src='" + data.standings[i].teamLogo  + "'width=30>"}  ${data.standings[i].teamName.default}</td>
-                    <td>${data.standings[i].points}</td>
-                    <td>${data.standings[i].wins}</td>
-                    <td>${data.standings[i].losses}</td>
-                    <td>${data.standings[i].otLosses}</td></tr>`;
+                <td>${data.standings[i].gamesPlayed}</td>
+                <td>${data.standings[i].points}</td>
+                <td>${data.standings[i].wins}</td>
+                <td>${data.standings[i].losses}</td>
+                <td>${data.standings[i].otLosses}</td></tr>`;
         }
 
         table += '</table>';

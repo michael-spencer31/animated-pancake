@@ -44,10 +44,6 @@
                     document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
                     document.getElementById('output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['subSeason']['assists'] + "<br>";
                     document.getElementById('output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['subSeason']['points'] + "<br>";
-
-
-
-
                 },
                 error: function(error) {
                     console.log(error);
