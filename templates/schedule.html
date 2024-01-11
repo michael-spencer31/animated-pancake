@@ -48,6 +48,18 @@
             var date_string = year + "-" + month_number + "-" + day_number;
             var url = "https://api-web.nhle.com/v1/schedule/" + date_string;
 
+            var date = new Date(year, month, day);
+            var currentDate = new Date();
+            var current_day = String(currentDate.getDate()).padStart(2, '0');
+
+            var past_day;
+            
+            if (day < currentDate.getDate()) {
+                past_day = true;
+            } else {
+                past_day = false;
+            }
+
             $.ajax({
                 url: '/getSchedule',
                 type: 'POST',
@@ -59,13 +71,26 @@
 
                     document.getElementById("games").innerHTML = response.result.gameWeek[0].date + "<br>";
 
-                    for (var i = 0; i < length; i++) {
-                        document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
-                        response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
-                        "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
-                        response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
-                        convertTime(response, i)
-                        + "<br><br>";
+                    if (!past_day) {
+
+                        for (var i = 0; i < length; i++) {
+                            document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+                            response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
+                            "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+                            response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
+                            convertTime(response, i)
+                            + "<br><br>";
+                        }
+                    } else {
+                        for (var i = 0; i < length; i++) {
+                            document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+                            response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
+                            response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
+                            "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+                            response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + " " + 
+                            response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br>"
+                            + "<br><br>";
+                        }
                     }
                 },
                 error: function (error) {
