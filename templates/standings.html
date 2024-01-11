@@ -20,7 +20,7 @@
         var data = JSON.parse(' {{ value | tojson | safe}} ');
 
         for (var i = 0; i < 32; i++) {
-            //document.getElementById("standings").innerHTML += data.standings[i].teamName.default + "<br>";
+
             table += `<tr><td> ${"<img src='" + data.standings[i].teamLogo  + "'width=30>"}  ${data.standings[i].teamName.default}</td>
                 <td>${data.standings[i].gamesPlayed}</td>
                 <td>${data.standings[i].points}</td>

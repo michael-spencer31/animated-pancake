@@ -55,6 +55,24 @@ def getStandings():
 
     return render_template("standings.html", value=data)
 
+@app.route("/schedule")
+@cross_origin()
+def getSchedule():
+
+    return render_template("schedule.html")
+
+@app.route('/getSchedule', methods=['POST'])
+@cross_origin()
+def get_games():
+
+    data = request.get_json()
+    url = data['value']
+    
+    resp = requests.get(url)
+    info = resp.json()
+
+    return jsonify(result=info)
+
 @app.route('/process', methods=['POST'])
 @cross_origin()
 def process():
