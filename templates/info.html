@@ -10,10 +10,12 @@
     {% block content %}
     
     <h1> Info </h1>
-    <p id="info"></p>
+    <form>
+        <input type="text" id="player" name="search" placeholder="Enter player name...">
+    </form>
+    
+    <input type="button" value="Search" id="submit" onclick="sendData()"></button>
     <img id="hero">
-    <input type="text" id="player"><br><br>
-    <button id="submit" onclick="sendData()">Search</button>
 
     <div id="output"></div>
 

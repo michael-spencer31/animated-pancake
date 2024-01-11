@@ -94,3 +94,32 @@ th {
 .dropdown-content a:hover {background-color: #ddd;}
 .dropdown:hover .dropdown-content {display: block;}
 .dropdown:hover .dropbtn {background-color: #3E8E41;}
+
+/* textbox */
+input[type=text] {
+	width: 250px;
+	box-sizing: border-box;
+	border: 2px solid #CCC;
+	border-radius: 4px;
+	font-size: 16px;
+	background-color: white;
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	padding: 12px 5px 12px 20px;
+	transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+	width: 100%;
+}
+
+/* buttons */
+input[type=button] {
+	background-color: #326fa8;
+	border: none;
+	color: white;
+	padding: 16px 32px;
+	text-decoration: none;
+	margin: 4px 2px;
+	cursor: pointer;
+}
