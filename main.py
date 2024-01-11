@@ -22,12 +22,17 @@ def home():
 @cross_origin()
 def about():
 
-    url = "https://api-web.nhle.com/v1/standings/now"
+    goals_url = "https://api.nhle.com/stats/rest/en/leaders/skaters/goals?cayenneExp=season=20232024"
 
-    resp = requests.get(url)
-    data = resp.json()
+    goals_resp = requests.get(goals_url)
+    goals_data = goals_resp.json()
 
-    return render_template("about.html", value=data)
+    assists_url = "https://api.nhle.com/stats/rest/en/leaders/skaters/assists?cayenneExp=season=20232024"
+    
+    assists_resp = requests.get(assists_url)
+    assists_data = assists_resp.json()
+
+    return render_template("about.html", goals=goals_data, assists=assists_data)
 
 @app.route("/info")
 @cross_origin()
@@ -72,7 +77,15 @@ def getPlayerName(player):
         "KRIS LETANG": "8471724",
         "NICK SUZUKI": "8480018",
         "COLE CAUFIELD": "8481540",
-        "FILIP MESAR": "8483488"
+        "FILIP MESAR": "8483488",
+        "JURAJ SLAFKOVSKY": "8483515",
+        "MATTIAS EKHOLM": "8475218",
+        "RYAN JOHANSEN": "8475793",
+        "MIKAEL GRANLUND": "8475798",
+        "NINO NIEDERREITER": "8475799",
+        "KEVIN GRAVEL": "8475857",
+        "MARK JANKOWSKI": "8476873"
+
     }
     return player_dict[player]
 

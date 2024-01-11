@@ -7,10 +7,44 @@
   <body>
     {% extends "template.html" %}
     {% block content %}
-    <!---https://www.cssscript.com/tag/calendar/ -->
-    <h1> About Flask </h1>
+
+    <h1>Goal Leaders</h1>
+    <div id="goal-container"></div>
+	<h1>Assists Leaders</h1>
+    <div id="assist-container"></div>
+
     <script>
-      
+
+        var goals_data = JSON.parse(' {{ goals | tojson | safe}} ');
+		var assist_data = JSON.parse(' {{ assists | tojson | safe}} ');
+
+        let goal_table = '<table>';
+        let assist_table = '<table>';
+
+        goal_table += '<tr><th>Name</th><th>Goals</th><tr>';
+        assist_table += '<tr><th>Name</th><th>Assists</th><tr>';
+
+        for (var i = 0; i < 10; i++) {
+  
+          goal_table += `<tr><td> ${"<img src='" + goals_data.data[i].team.logos[3].url  + "'width=30>"}
+                            ${goals_data.data[i].player.fullName}
+                            <td> ${goals_data.data[i].goals}</td>
+                      	</tr>`;
+        }
+
+		for (var i = 0; i < 10; i++) {
+  
+			assist_table += `<tr><td> ${"<img src='" + assist_data.data[i].team.logos[3].url  + "'width=30>"}
+									${assist_data.data[i].player.fullName}
+								<td> ${assist_data.data[i].assists}</td>
+				  				</tr>`;
+		}
+        goal_table += '</table>';
+		assist_table += '</table>';
+
+        document.getElementById("goal-container").innerHTML = goal_table;
+		document.getElementById("assist-container").innerHTML = assist_table;
+
     </script>
       
     {% endblock %}

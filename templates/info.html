@@ -24,8 +24,7 @@
             //document.getElementById("info").innerHTML = "<img src=" + data.heroImage + ">";
 
             const player_name = document.getElementById("player").value;
-            console.log(player_name);
-            
+
             $.ajax({
                 url: '/process',
                 type: 'POST',
@@ -34,7 +33,7 @@
                 success: function(response) {
                     document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
-                    document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70>";
+                    document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70><br>";
 
                     document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
 
