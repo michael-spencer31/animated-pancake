@@ -77,29 +77,33 @@ def get_games():
 @cross_origin()
 def process():
     data = request.get_json()
-    player_id = getPlayerName(data['value'])
+    player_id = getPlayerID(data['value'])
 
+    # remove the new line escape sequence from the string 
     player_id = player_id.strip('\n')
 
     url = "https://api-web.nhle.com/v1/player/" + player_id + "/landing"
-    print(url)
+
     resp = requests.get(url)
     info = resp.json()
 
     return jsonify(result=info)
 
-def getPlayerName(player):
+# function to get and return the id based on the players name
+def getPlayerID(player):
 
     player = player.upper()
 
+    # open and read a text file with player ids 
     with open('players.txt', 'r') as player_ids:
         data = player_ids.readlines()
     
+    # search through the file and find the requested player name then store the id
     for line in data:
         if player in line:
-            print(line)
+            # split the players id from the player name
             id = line.rsplit(' ', 1)
-            
+
     return id[1]
 
 
