@@ -62,6 +62,9 @@ th, td {
 th {
 	background-color: #326fa8;
 	color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 /* dropdown button */

@@ -37,7 +37,7 @@
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70><br>";
 
-                    document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
+                	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
 
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
@@ -47,7 +47,8 @@
                     document.getElementById('output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['subSeason']['points'] + "<br>";
                 },
                 error: function(error) {
-                    console.log(error);
+                	document.getElementById('output').innerHTML = "Player not found";
+                	console.log(error);
                 }
             });
         }

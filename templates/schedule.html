@@ -60,6 +60,7 @@
                 past_day = false;
             }
 
+            // start an ajax POST request to hit the schedule end point on our server
             $.ajax({
                 url: '/getSchedule',
                 type: 'POST',
@@ -67,10 +68,12 @@
                 data: JSON.stringify({ 'value': url}),
                 success: function (response) {
 
+                    // determine how many games on the given day
                     var length = Object.keys(response.result.gameWeek[0].games).length;
 
                     document.getElementById("games").innerHTML = response.result.gameWeek[0].date + "<br>";
 
+                    // check if the game is already finished so we can show the final score
                     if (!past_day) {
 
                         for (var i = 0; i < length; i++) {

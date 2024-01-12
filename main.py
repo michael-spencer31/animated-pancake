@@ -1,6 +1,6 @@
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
-import requests
+import requests, csv, argparse
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -79,8 +79,10 @@ def process():
     data = request.get_json()
     player_id = getPlayerName(data['value'])
 
-    url = "https://api-web.nhle.com/v1/player/" + player_id + "/landing"
+    player_id = player_id.strip('\n')
 
+    url = "https://api-web.nhle.com/v1/player/" + player_id + "/landing"
+    print(url)
     resp = requests.get(url)
     info = resp.json()
 
@@ -90,22 +92,15 @@ def getPlayerName(player):
 
     player = player.upper()
 
-    player_dict = {
-        "SIDNEY CROSBY": "8471675",
-        "KRIS LETANG": "8471724",
-        "NICK SUZUKI": "8480018",
-        "COLE CAUFIELD": "8481540",
-        "FILIP MESAR": "8483488",
-        "JURAJ SLAFKOVSKY": "8483515",
-        "MATTIAS EKHOLM": "8475218",
-        "RYAN JOHANSEN": "8475793",
-        "MIKAEL GRANLUND": "8475798",
-        "NINO NIEDERREITER": "8475799",
-        "KEVIN GRAVEL": "8475857",
-        "MARK JANKOWSKI": "8476873"
-
-    }
-    return player_dict[player]
+    with open('players.txt', 'r') as player_ids:
+        data = player_ids.readlines()
+    
+    for line in data:
+        if player in line:
+            print(line)
+            id = line.rsplit(' ', 1)
+            
+    return id[1]
 
 
 if __name__ == "__main__":
