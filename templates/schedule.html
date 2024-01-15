@@ -18,6 +18,7 @@
 
         function getGames (day, month, year) {
 
+			console.log("Get games is running!");
             var month_number, day_number;
             const MonthNumber = new Map([
                 ["Jan", 1],
@@ -77,33 +78,34 @@
                     // check if the game is already finished so we can show the final score
                     if (!past_day) {
 
-                      for (var i = 0; i < length; i++) {
+                    	for (var i = 0; i < length; i++) {
 
-                        // game in progress
-                        if (response.result.gameWeek[0]['games'][i]['awayTeam']['score'] !== undefined && response.result.gameWeek[0]['games'][i]['homeTeam']['score'] !== undefined) {
+                        	// game in progress
+                        	if (response.result.gameWeek[0]['games'][i]['awayTeam']['score'] !== undefined && response.result.gameWeek[0]['games'][i]['homeTeam']['score'] !== undefined) {
 
-                          document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
-                          response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
-                          response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
-                          "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
-                          response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + " " + 
-                          response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br>"
-                          + "<br><br>";
-                          // game not started yet
-                        } else {
-                          for (var i = 0; i < length; i++) {
-                            document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
-                            response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
-                            "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
-                            response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
-                            convertTime(response, i)
-                            + "<br><br>";      
-                          }
-                        }
-                      }
-                      // game already finished
+								document.getElementById("games").innerHTML += "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+								response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
+								response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
+								"<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+								response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + " " + 
+								response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br>"
+								+ "<br><br>";
+							// game not started yet
+                        	} else {
+                        
+								document.getElementById("games").innerHTML += "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+								response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
+								"<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+								response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
+								convertTime(response, i)
+								+ "<br><br>";      
+								
+                        	}
+                      	}
+                    // game already finished
                     } else {
-                      for (var i = 0; i < length; i++) {
+                    
+						for (var i = 0; i < length; i++) {
                             document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
                             response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
                             response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
@@ -120,15 +122,15 @@
             });
         }
         //function to convert UTC time to users local time zone
-      function convertTime (data, num) {
+      	function convertTime (data, num) {
 
-        var utc = data.result.gameWeek[0]['games'][num]['startTimeUTC'];
-        var date = new Date(utc);
-        var local_time = new Date(date.toString());
-        var start24 = local_time.getHours() + ":" + local_time.getMinutes() + "0";
-        
-        return start24;
-    }
+			var utc = data.result.gameWeek[0]['games'][num]['startTimeUTC'];
+			var date = new Date(utc);
+			var local_time = new Date(date.toString());
+			var start24 = local_time.getHours() + ":" + local_time.getMinutes() + "0";
+			
+			return start24;
+    	}
 
 function CalendarControl() {
     const calendar = new Date();
@@ -349,13 +351,12 @@ function CalendarControl() {
         calendarControl.attachEvents();
       }
     };
-    calendarControl.init();
-  }
+    	calendarControl.init();
+  		}
   
-  const calendarControl = new CalendarControl();
+  		const calendarControl = new CalendarControl();
 
     </script>
-      
     {% endblock %}
   </body>
 </html>
