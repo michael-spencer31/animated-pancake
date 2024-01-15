@@ -77,16 +77,33 @@
                     // check if the game is already finished so we can show the final score
                     if (!past_day) {
 
-                        for (var i = 0; i < length; i++) {
+                      for (var i = 0; i < length; i++) {
+
+                        // game in progress
+                        if (response.result.gameWeek[0]['games'][i]['awayTeam']['score'] !== undefined && response.result.gameWeek[0]['games'][i]['homeTeam']['score'] !== undefined) {
+
+                          document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+                          response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
+                          response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
+                          "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+                          response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + " " + 
+                          response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br>"
+                          + "<br><br>";
+                          // game not started yet
+                        } else {
+                          for (var i = 0; i < length; i++) {
                             document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
                             response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
                             "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
                             response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
                             convertTime(response, i)
-                            + "<br><br>";
+                            + "<br><br>";      
+                          }
                         }
+                      }
+                      // game already finished
                     } else {
-                        for (var i = 0; i < length; i++) {
+                      for (var i = 0; i < length; i++) {
                             document.getElementById("games").innerHTML +=  "<img src='" + response.result.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
                             response.result.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + " " +
                             response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
