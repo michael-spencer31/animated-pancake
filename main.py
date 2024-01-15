@@ -85,6 +85,9 @@ def process():
     url = "https://api-web.nhle.com/v1/player/" + player_id + "/landing"
 
     resp = requests.get(url)
+
+    if (resp.status_code == 404):
+        print("an error occurred")
     info = resp.json()
 
     return jsonify(result=info)

@@ -29,7 +29,6 @@
 
             var data = JSON.parse(' {{ value | tojson | safe}}');
 
-	
             const player_name = document.getElementById("player").value;
 
             $.ajax({
@@ -58,13 +57,19 @@
 					document.getElementById('career_output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['career']['points'] + "<br>";
 
 					document.getElementById("awards").innerHTML = "<br><b>Awards</b> <br><br>";
+
                     var length = Object.keys(response.result.awards).length;
+					var number_of_years = Object.keys(response.result.awards[0].seasons).length;
+
+					document.getElementById('awards_output').innerHTML = "";
 					
 					for (var i = 0; i < length; i++) {
-						document.getElementById('awards_output').innerHTML += response.result.awards[i].trophy.default + " " + response.result.awards[i].seasons[0].seasonId + "<br>";
-					}
 
-				
+						for (var j = 0; j < number_of_years; j++) {
+							var year = response.result.awards[i].seasons[j].seasonId;
+							document.getElementById('awards_output').innerHTML += response.result.awards[i].trophy.default + " " + String(year).substr(0, 4) + " - " + String(year).substr(4, 8) + "<br>";
+						}
+					}
 				},
                 error: function(error) {
                 	document.getElementById('output').innerHTML = "Player not found";
