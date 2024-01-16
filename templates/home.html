@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Home</title>
+	<link rel="icon" href="https://icons.iconarchive.com/icons/martz90/circle/512/nhl-icon.png">
+	<script src="static\scripts.js"></script>
   </head>
   <body>
     {% extends "template.html" %}
@@ -14,29 +16,19 @@
     <p id="games"></p>
   
     <script>
-      var num_games = ' {{ length }} ';
+      	var num_games = ' {{ length }} ';
 
-      var data = JSON.parse(' {{ value | tojson | safe}}');
+      	var data = JSON.parse(' {{ value | tojson | safe}}');
 
-      for (var i = 0; i < num_games; i++) {
-        document.getElementById("games").innerHTML +=  "<img src='" + data.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
-        data.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
-           "<img src='" + data.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
-          data.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
-          convertTime(data, i) 
-          + "<br><br>";
-      }
-      //function to convert UTC time to users local time zone
-      function convertTime (data, num) {
-
-        var utc = data.gameWeek[0]['games'][num]['startTimeUTC'];
-        var date = new Date(utc);
-        var local_time = new Date(date.toString());
-        var start24 = local_time.getHours() + ":" + local_time.getMinutes() + "0";
-
-        return start24;
-        
-      }
+		for (var i = 0; i < num_games; i++) {
+			document.getElementById("games").innerHTML +=  "<img src='" + data.gameWeek[0]['games'][i]['awayTeam']['logo'] + "'width=25 height=25>" +
+			data.gameWeek[0]['games'][i]['awayTeam']['placeName']['default'] + "<br>" +
+			"<img src='" + data.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
+			data.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + "<br>" +
+			convertTime(data, i) 
+			+ "<br><br>";
+		}
+      	
     </script>
     
     {% endblock %}

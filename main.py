@@ -18,6 +18,7 @@ def home():
     items = len(data['gameWeek'][0]['games'])
     return render_template("home.html", value=data, length=items)
 
+
 @app.route("/about")
 @cross_origin()
 def about():
@@ -112,4 +113,3 @@ def getPlayerID(player):
 
 if __name__ == "__main__":
     app.run(debug=True)
-

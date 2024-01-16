@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>Schedule</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
+	<link rel="icon" href="https://icons.iconarchive.com/icons/martz90/circle/512/nhl-icon.png">
+	<script src="static\scripts.js"></script>
   </head>
   <body>
     {% extends "template.html" %}
@@ -18,7 +20,6 @@
 
         function getGames (day, month, year) {
 
-			console.log("Get games is running!");
             var month_number, day_number;
             const MonthNumber = new Map([
                 ["Jan", 1],
@@ -111,7 +112,7 @@
                             response.result.gameWeek[0]['games'][i]['awayTeam']['score'] + "<br>" +
                             "<img src='" + response.result.gameWeek[0]['games'][i]['homeTeam']['logo'] + "'width=25 height=25>" +
                             response.result.gameWeek[0]['games'][i]['homeTeam']['placeName']['default'] + " " + 
-                            response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br>"
+                            response.result.gameWeek[0]['games'][i]['homeTeam']['score'] +"<br> Final <br><br>";
                             + "<br><br>";
                         }
                     }
