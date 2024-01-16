@@ -19,9 +19,9 @@ def home():
     return render_template("home.html", value=data, length=items)
 
 
-@app.route("/about")
+@app.route("/leaders")
 @cross_origin()
-def about():
+def leaders():
 
     goals_url = "https://api.nhle.com/stats/rest/en/leaders/skaters/goals?cayenneExp=season=20232024"
 
@@ -33,7 +33,7 @@ def about():
     assists_resp = requests.get(assists_url)
     assists_data = assists_resp.json()
 
-    return render_template("about.html", goals=goals_data, assists=assists_data)
+    return render_template("leaders.html", goals=goals_data, assists=assists_data)
 
 @app.route("/info")
 @cross_origin()
