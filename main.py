@@ -35,15 +35,15 @@ def leaders():
 
     return render_template("leaders.html", goals=goals_data, assists=assists_data)
 
-@app.route("/info")
+@app.route("/players")
 @cross_origin()
-def info():
+def search():
 
     url = "https://api-web.nhle.com/v1/player/8479407/landing"
     resp = requests.get(url)
     data = resp.json()
 
-    return render_template("info.html", value=data)
+    return render_template("players.html", value=data)
 
 @app.route("/standings")
 @cross_origin()
