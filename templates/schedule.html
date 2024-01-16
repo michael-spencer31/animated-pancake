@@ -136,80 +136,69 @@
 function CalendarControl() {
     const calendar = new Date();
     const calendarControl = {
-      localDate: new Date(),
-      prevMonthLastDate: null,
-      calWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
-      calMonthName: [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-      ],
-      daysInMonth: function (month, year) {
-        return new Date(year, month, 0).getDate();
-      },
-      firstDay: function () {
-        return new Date(calendar.getFullYear(), calendar.getMonth(), 1);
-      },
-      lastDay: function () {
-        return new Date(calendar.getFullYear(), calendar.getMonth() + 1, 0);
-      },
-      firstDayNumber: function () {
-        return calendarControl.firstDay().getDay() + 1;
-      },
-      lastDayNumber: function () {
-        return calendarControl.lastDay().getDay() + 1;
-      },
-      getPreviousMonthLastDate: function () {
-        let lastDate = new Date(
-          calendar.getFullYear(),
-          calendar.getMonth(),
-          0
-        ).getDate();
-        return lastDate;
-      },
-      navigateToPreviousMonth: function () {
-        calendar.setMonth(calendar.getMonth() - 1);
-        calendarControl.attachEventsOnNextPrev();
-      },
-      navigateToNextMonth: function () {
-        calendar.setMonth(calendar.getMonth() + 1);
-        calendarControl.attachEventsOnNextPrev();
-      },
-      navigateToCurrentMonth: function () {
-        let currentMonth = calendarControl.localDate.getMonth();
-        let currentYear = calendarControl.localDate.getFullYear();
-        calendar.setMonth(currentMonth);
-        calendar.setYear(currentYear);
-        calendarControl.attachEventsOnNextPrev();
-      },
-      displayYear: function () {
-        let yearLabel = document.querySelector(".calendar .calendar-year-label");
-        yearLabel.innerHTML = calendar.getFullYear();
-      },
-      displayMonth: function () {
-        let monthLabel = document.querySelector(
-          ".calendar .calendar-month-label"
-        );
-        monthLabel.innerHTML = calendarControl.calMonthName[calendar.getMonth()];
-      },
-      selectDate: function (e) {
+    	
+		localDate: new Date(),
+      	prevMonthLastDate: null,
+      	calWeekDays: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+      	calMonthName: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
 
-        getGames(e.target.textContent, calendarControl.calMonthName[calendar.getMonth()], calendar.getFullYear());
-        console.log(
-          `${e.target.textContent} ${
-            calendarControl.calMonthName[calendar.getMonth()]
-          } ${calendar.getFullYear()}`
-        );
-      },
+      	daysInMonth: function (month, year) {
+        	return new Date(year, month, 0).getDate();
+      	},
+		firstDay: function () {
+			return new Date(calendar.getFullYear(), calendar.getMonth(), 1);
+		},
+		lastDay: function () {
+			return new Date(calendar.getFullYear(), calendar.getMonth() + 1, 0);
+		},
+		firstDayNumber: function () {
+			return calendarControl.firstDay().getDay() + 1;
+		},
+		lastDayNumber: function () {
+			return calendarControl.lastDay().getDay() + 1;
+		},
+		getPreviousMonthLastDate: function () {
+			let lastDate = new Date(
+			calendar.getFullYear(),
+			calendar.getMonth(),
+			0
+			).getDate();
+			return lastDate;
+		},
+		navigateToPreviousMonth: function () {
+			calendar.setMonth(calendar.getMonth() - 1);
+			calendarControl.attachEventsOnNextPrev();
+		},
+		navigateToNextMonth: function () {
+			calendar.setMonth(calendar.getMonth() + 1);
+			calendarControl.attachEventsOnNextPrev();
+		},
+		navigateToCurrentMonth: function () {
+			let currentMonth = calendarControl.localDate.getMonth();
+			let currentYear = calendarControl.localDate.getFullYear();
+			calendar.setMonth(currentMonth);
+			calendar.setYear(currentYear);
+			calendarControl.attachEventsOnNextPrev();
+		},
+		displayYear: function () {
+			let yearLabel = document.querySelector(".calendar .calendar-year-label");
+			yearLabel.innerHTML = calendar.getFullYear();
+		},
+		displayMonth: function () {
+			let monthLabel = document.querySelector(
+			".calendar .calendar-month-label"
+			);
+			monthLabel.innerHTML = calendarControl.calMonthName[calendar.getMonth()];
+		},
+		selectDate: function (e) {
+
+			getGames(e.target.textContent, calendarControl.calMonthName[calendar.getMonth()], calendar.getFullYear());
+			console.log(
+			`${e.target.textContent} ${
+				calendarControl.calMonthName[calendar.getMonth()]
+			} ${calendar.getFullYear()}`
+			);
+		},
       plotSelectors: function () {
         document.querySelector(
           ".calendar"
