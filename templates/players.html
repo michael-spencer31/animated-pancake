@@ -39,25 +39,30 @@
                 contentType: 'application/json',
                 data: JSON.stringify({ 'value': player_name }),
                 success: function(response) {
-					document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
+
+                    document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
                     document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70><br>";
-
                 	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
-
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
-                    document.getElementById('output').innerHTML += "Games Played: " + response.result.featuredStats['regularSeason']['subSeason']['gamesPlayed'] + "<br>";
-                    document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
-                    document.getElementById('output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['subSeason']['assists'] + "<br>";
-                    document.getElementById('output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['subSeason']['points'] + "<br><br>";
-					document.getElementById('career').innerHTML = "<b>Career Stats</b> <br><br>";
-					document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
-					document.getElementById('career_output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['career']['goals'] + "<br>";
-					document.getElementById('career_output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['career']['assists'] + "<br>";
-					document.getElementById('career_output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['career']['points'] + "<br>";
 
+                    // check if player is a goalie or skater 
+                    if (response.result.position != 'G') {
+                        document.getElementById('output').innerHTML += "Games Played: " + response.result.featuredStats['regularSeason']['subSeason']['gamesPlayed'] + "<br>";
+                        document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
+                        document.getElementById('output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['subSeason']['assists'] + "<br>";
+                        document.getElementById('output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['subSeason']['points'] + "<br><br>";
+                        document.getElementById('career').innerHTML = "<b>Career Stats</b> <br><br>";
+                        document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
+                        document.getElementById('career_output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['career']['goals'] + "<br>";
+                        document.getElementById('career_output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['career']['assists'] + "<br>";
+                        document.getElementById('career_output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['career']['points'] + "<br>";
+                    } else {
+                        document.getElementById('career').innerHTML = "<br><b>Career Stats</b> <br><br>";
+                        document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
+                    }
 					document.getElementById("awards").innerHTML = "<br><b>Awards</b> <br><br>";
 
                     var length = Object.keys(response.result.awards).length;
@@ -68,7 +73,6 @@
 					for (var i = 0; i < length; i++) {
 
                         var number_of_years = Object.keys(response.result.awards[i].seasons).length;
-                        console.log(number_of_years);
                         var year;
 
                         if (number_of_years == 1) {
