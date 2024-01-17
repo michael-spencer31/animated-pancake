@@ -47,6 +47,7 @@
                 	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
+                    document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + "<br>";
 
                     // check if player is a goalie or skater 
                     if (response.result.position != 'G') {
@@ -64,12 +65,18 @@
                         document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
                     }
 					document.getElementById("awards").innerHTML = "<br><b>Awards</b> <br><br>";
+                    var year, length;
 
-                    var length = Object.keys(response.result.awards).length;
-                    var year;
+                    // this checks if the awards key actually exists 
+                    if (("awards" in response.result)) {
+                        length = Object.keys(response.result.awards).length;
+                    } else {
+                        length = 0;
+                    }
+
 
 					document.getElementById('awards_output').innerHTML = "";
-					
+
 					for (var i = 0; i < length; i++) {
 
                         var number_of_years = Object.keys(response.result.awards[i].seasons).length;
@@ -79,14 +86,17 @@
                             year = response.result.awards[i].seasons[0].seasonId;
 							document.getElementById('awards_output').innerHTML += response.result.awards[i].trophy.default + " " + String(year).substr(0, 4) + " - " + String(year).substr(4, 8) + "<br>";
                         // check if the player has won the same award multiple times
-                        } else {
+                        } else if (length != 0) {
 
                             for (var j = 0; j < number_of_years; j++) {
                                 year = response.result.awards[i].seasons[j].seasonId;
                                 document.getElementById('awards_output').innerHTML += response.result.awards[i].trophy.default + " " + String(year).substr(0, 4) + " - " + String(year).substr(4, 8) + "<br>";
                             }
-                        }    
+                        } 
 					}
+                    if (length == 0) {
+                        document.getElementById('awards_output').innerHTML += "Player has no major awards";
+                    }
 				},
                 error: function(error) {
                 	document.getElementById('output').innerHTML = "Player not found";
