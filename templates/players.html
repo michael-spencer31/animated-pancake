@@ -33,6 +33,15 @@
 
             const player_name = document.getElementById("player").value;
 
+            if (document.getElementById("player").value == "") {
+                document.getElementById('output').innerHTML = "Please enter a player name!";
+                document.getElementById('career').innerHTML = "";
+                document.getElementById('career_output').innerHTML = "";
+                document.getElementById('awards').innerHTML = "";
+                document.getElementById('awards_output').innerHTML = "";
+                return;
+            }
+
             $.ajax({
                 url: '/process',
                 type: 'POST',
