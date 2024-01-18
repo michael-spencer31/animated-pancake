@@ -80,6 +80,9 @@ def process():
     data = request.get_json()
     player_id = getPlayerID(data['value'])
 
+    if (player_id == 0):
+        return jsonify(result = 0)
+
     # remove the new line escape sequence from the string 
     player_id = player_id.strip('\n')
 
@@ -98,6 +101,7 @@ def getPlayerID(player):
 
     player = player.upper()
 
+    id = {}    
     # open and read a text file with player ids 
     with open('players.txt', 'r') as player_ids:
         data = player_ids.readlines()
@@ -107,6 +111,10 @@ def getPlayerID(player):
         if player in line:
             # split the players id from the player name
             id = line.rsplit(' ', 1)
+
+    if (len(id) != 2):
+        id[1] = 0
+        return id[1]
 
     return id[1]
 

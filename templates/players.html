@@ -40,6 +40,15 @@
                 data: JSON.stringify({ 'value': player_name }),
                 success: function(response) {
 
+                    // check if the player does not exist
+                    if (response.result == 0) {
+                        document.getElementById('output').innerHTML = "Player not found";
+                        document.getElementById('career').innerHTML = "";
+                        document.getElementById('career_output').innerHTML = "";
+                        document.getElementById('awards').innerHTML = "";
+                        document.getElementById('awards_output').innerHTML = "";
+                        return;
+                    }
                     document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
                     document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
