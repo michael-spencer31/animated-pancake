@@ -56,6 +56,10 @@ def getStandings():
 
     return render_template("standings.html", value=data)
 
+@app.route("/about")
+def getAbout():
+    return render_template("about.html")
+
 @app.route("/schedule")
 @cross_origin()
 def getSchedule():
@@ -112,12 +116,12 @@ def getPlayerID(player):
             # split the players id from the player name
             id = line.rsplit(' ', 1)
 
+    # if the player id does not exist, return a 0
     if (len(id) != 2):
         id[1] = 0
         return id[1]
 
     return id[1]
-
 
 if __name__ == "__main__":
     app.run(debug=True)
