@@ -33,6 +33,7 @@
 
             const player_name = document.getElementById("player").value;
 
+            // check if the user does not enter anything
             if (document.getElementById("player").value == "") {
                 document.getElementById('output').innerHTML = "Please enter a player name!";
                 document.getElementById('career').innerHTML = "";
@@ -58,6 +59,7 @@
                         document.getElementById('awards_output').innerHTML = "";
                         return;
                     }
+    
                     document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
                     document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
@@ -65,8 +67,12 @@
                 	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
-                    document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + "<br>";
 
+                    if ("draftDetails" in response.result) {
+                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + "<br>";
+                    } else {
+                        document.getElementById('output').innerHTML += "Drafted: Undrafted<br>";
+                    }
                     // check if player is a goalie or skater 
                     if (response.result.position != 'G') {
                         document.getElementById('output').innerHTML += "Games Played: " + response.result.featuredStats['regularSeason']['subSeason']['gamesPlayed'] + "<br>";
@@ -85,6 +91,7 @@
 					document.getElementById("awards").innerHTML = "<br><b>Awards</b> <br><br>";
                     var year, length;
 
+                    
                     // this checks if the awards key actually exists 
                     if (("awards" in response.result)) {
                         length = Object.keys(response.result.awards).length;
