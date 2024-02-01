@@ -68,6 +68,7 @@
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
 
+                    // check if the player was drafted or not
                     if ("draftDetails" in response.result) {
                         document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + "<br>";
                     } else {

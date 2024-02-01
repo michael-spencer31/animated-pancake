@@ -19,6 +19,15 @@ ul {
 	position: sticky;
 	top: 0;
 }
+
+.uls {
+    margin: 0;
+}
+
+.lis {
+    margin: 0;
+    list-style-type: circle;
+}
   
 li {
 	float: left;

@@ -18,6 +18,8 @@
 
     <script>
 
+      //getGames("01", "02", "2024");
+
         function getGames (day, month, year) {
 
             var month_number, day_number;
@@ -75,6 +77,10 @@
                     var length = Object.keys(response.result.gameWeek[0].games).length;
 
                     document.getElementById("games").innerHTML = response.result.gameWeek[0].date + "<br>";
+
+					if (length == 0) {
+						document.getElementById("games").innerHTML += "<br> No games scheduled for today";
+					}
 
                     // check if the game is already finished so we can show the final score
                     if (!past_day) {

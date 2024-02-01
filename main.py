@@ -7,6 +7,7 @@ cors = CORS(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 
+# endpoint for the home landing page
 @app.route("/")
 @cross_origin()
 def home():
@@ -18,7 +19,7 @@ def home():
     items = len(data['gameWeek'][0]['games'])
     return render_template("home.html", value=data, length=items)
 
-
+# endpoint for the leaders page. returns 2 arrays of data
 @app.route("/leaders")
 @cross_origin()
 def leaders():
