@@ -2,12 +2,15 @@ from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
 import requests, csv, argparse
 
+### flask server ###
+
 app = Flask(__name__)
 cors = CORS(app)
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 
 # endpoint for the home landing page
+# cross_origin() must be used for CORS headers for the API request
 @app.route("/")
 @cross_origin()
 def home():
@@ -36,6 +39,7 @@ def leaders():
 
     return render_template("leaders.html", goals=goals_data, assists=assists_data)
 
+# default endpoint for the players page
 @app.route("/players")
 @cross_origin()
 def search():
@@ -46,6 +50,7 @@ def search():
 
     return render_template("players.html", value=data)
 
+# endpoint for the standings page
 @app.route("/standings")
 @cross_origin()
 def getStandings():
@@ -57,10 +62,12 @@ def getStandings():
 
     return render_template("standings.html", value=data)
 
+# endpoint for the about page
 @app.route("/about")
 def getAbout():
     return render_template("about.html")
 
+# endpoint for the schedule page
 @app.route("/schedule")
 @cross_origin()
 def getSchedule():
@@ -124,5 +131,6 @@ def getPlayerID(player):
 
     return id[1]
 
+# use this to run server locally on port 5000 (by default)
 if __name__ == "__main__":
     app.run(debug=True)
