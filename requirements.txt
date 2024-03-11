@@ -1,6 +1,5 @@
 ﻿beautifulsoup4==4.12.3
 blinker==1.7.0
-gunicorn==19.7.1
 bs4==0.0.2
 certifi==2023.7.22
 cffi==1.16.0
