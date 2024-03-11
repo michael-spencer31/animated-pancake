@@ -132,5 +132,5 @@ def getPlayerID(player):
     return id[1]
 
 # use this to run server locally on port 5000 (by default)
-if __name__ == "__main__":
-    app.run(debug=True)
+# if __name__ == "__main__":
+    # app.run(debug=True)
