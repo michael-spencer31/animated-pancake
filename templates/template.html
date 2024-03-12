@@ -10,7 +10,7 @@
         <header>
 
             <nav class="navbar">
-                <div class="logo">MUO</div>
+                <div class="logo">Hockey Stats</div>
 
                 <ul class="nav-links">
                     <input type="checkbox" id="checkbox_toggle" />
@@ -22,27 +22,19 @@
                         <li><a href="{{ url_for('home') }}">Home</a></li>
                         <li><a href="{{ url_for('leaders') }}">Leaders</a></li>
                         <li><a href="{{ url_for('search') }}">Player Search</a></li>
-                        <li><a href="{{ url_for('getStandings') }}">Standings</a></li>
+
+                        <li class="services">
+                            <a href="">Standings</a>
+                            <ul class="dropdown">
+                                <li><a href="{{ url_for('getStandings') }}">Standings</a></li>
+                                <li><a href="/">Dropdown 2</a></li>
+                            </ul>
+                        </li>
                         <li><a href="{{ url_for('getSchedule') }}">Schedule</a></li>
                         <li><a href="{{ url_for('getAbout') }}">About</a></li>
                     </div>
                 </ul>
             </nav>
-
-            <!--
-            <div class="container">
-                <strong><nav>
-                    <ul class="active">
-                        <li><a href="{{ url_for('home') }}">Home</a></li>
-                        <li><a href="{{ url_for('leaders') }}">Leaders</a></li>
-                        <li><a href="{{ url_for('search') }}">Player Search</a></li>
-                        <li><a href="{{ url_for('getStandings') }}">Standings</a></li>
-                        <li><a href="{{ url_for('getSchedule') }}">Schedule</a></li>
-                        <li><a href="{{ url_for('getAbout') }}">About</a></li>
-                    </ul>
-                </nav></strong>
-            </div>
-        -->
         </header>
 
         {% block content %}
