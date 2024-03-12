@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Player Search</title>
+    <meta name="viewport" content="width=device-width">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> 
 	<link rel="icon" href="https://icons.iconarchive.com/icons/martz90/circle/512/nhl-icon.png">
 	<script src="static\scripts.js"></script>
@@ -59,6 +60,10 @@
                         document.getElementById('awards_output').innerHTML = "";
                         return;
                     }
+
+                    if (response.result.position == 'G') {
+
+                    }
     
                     document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
                     document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
@@ -86,6 +91,7 @@
                         document.getElementById('career_output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['career']['assists'] + "<br>";
                         document.getElementById('career_output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['career']['points'] + "<br>";
                     } else {
+                        getGoalie(player_name);
                         document.getElementById('career').innerHTML = "<br><b>Career Stats</b> <br><br>";
                         document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
                     }

@@ -2,11 +2,34 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
         <title>Flask Parent Template</title>
         <link rel="stylesheet" href="{{ url_for('static',     filename='css/template.css') }}">
     </head>
     <body>
         <header>
+
+            <nav class="navbar">
+                <div class="logo">MUO</div>
+
+                <ul class="nav-links">
+                    <input type="checkbox" id="checkbox_toggle" />
+                    <label for="checkbox_toggle" class="hamburger">&#9776;</label>
+
+                    <div class="menu">
+
+
+                        <li><a href="{{ url_for('home') }}">Home</a></li>
+                        <li><a href="{{ url_for('leaders') }}">Leaders</a></li>
+                        <li><a href="{{ url_for('search') }}">Player Search</a></li>
+                        <li><a href="{{ url_for('getStandings') }}">Standings</a></li>
+                        <li><a href="{{ url_for('getSchedule') }}">Schedule</a></li>
+                        <li><a href="{{ url_for('getAbout') }}">About</a></li>
+                    </div>
+                </ul>
+            </nav>
+
+            <!--
             <div class="container">
                 <strong><nav>
                     <ul class="active">
@@ -19,6 +42,7 @@
                     </ul>
                 </nav></strong>
             </div>
+        -->
         </header>
 
         {% block content %}

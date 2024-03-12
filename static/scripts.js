@@ -6,6 +6,10 @@ function convertTime (data, num) {
     var local_time = new Date(date.toString());
     var start24 = local_time.getHours() + ":" + local_time.getMinutes() + "0";
 
-    return start24;
-    
+    return start24;   
+}
+
+function getGoalie (goalie) {
+
+
 }
