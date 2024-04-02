@@ -77,7 +77,8 @@
 
                     // check if the player was drafted or not
                     if ("draftDetails" in response.result) {
-                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + "<br>";
+                        console.log();
+                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + " by " + convertAbrv(response.result.draftDetails['teamAbbrev']) + " (" + overallPick(response.result.draftDetails['round'], response.result.draftDetails['pickInRound']) + " overall)" + "<br>";
                     } else {
                         document.getElementById('output').innerHTML += "Drafted: Undrafted<br>";
                     }
@@ -93,6 +94,8 @@
                         document.getElementById('career_output').innerHTML += "Assists: " + response.result.featuredStats['regularSeason']['career']['assists'] + "<br>";
                         document.getElementById('career_output').innerHTML += "Points: " + response.result.featuredStats['regularSeason']['career']['points'] + "<br>";
                     } else {
+                        document.getElementById('output').innerHTML += "GAA: " + response.result.featuredStats['regularSeason']['career']['goalsAgainstAvg'] + "<br>";    
+                        document.getElementById('output').innerHTML += "Save Percentage: " + response.result.featuredStats['regularSeason']['career']['savePctg'] + "<br>";    
                         getGoalie(player_name);
                         document.getElementById('career').innerHTML = "<br><b>Career Stats</b> <br><br>";
                         document.getElementById('career_output').innerHTML = "Games Played: " + response.result.featuredStats['regularSeason']['career']['gamesPlayed'] + "<br>";
