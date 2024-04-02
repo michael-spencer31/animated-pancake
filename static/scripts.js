@@ -18,11 +18,23 @@ function getSchedule (response, past_day) {
     console.log("Hello, World!");
 }
 
-function overallPick (round, pick) {
+function overallPick (round, pick, year) {
 
+    // if it is the first round, just return the pick number
     if (round == 1) {
         return getNumberWithOrdinal(pick);
     } else {
+
+        if (year <= 2000) {
+            return getNumberWithOrdinal((round - 1) * 28 + pick);
+        // before 2016: 30 NHL teams
+        } else if (year <= 2016 && year > 2000) {
+            return getNumberWithOrdinal((round - 1) * 30 + pick);
+            // 2017 - 2021 Vegas gets added, 31 NHL teams
+        } else if (year >= 2017 && year <= 2021) {
+            return getNumberWithOrdinal((round - 1) * 31 + pick);
+        }
+        // 2021 - now Seattle gets added 32 NHL teams
         return getNumberWithOrdinal((round - 1) * 32 + pick);
     }
 }
@@ -69,4 +81,16 @@ function convertAbrv(team) {
         ["OTT", "Ottawa"],
     ]);
     return team_names.get(team);
+}
+
+function getCountry (city, country) {
+
+    const countries = new Map([
+        ["CAN", "Canada"],
+        ["USA", "United States"],
+        ["SWE", "Sweden"],
+        ["FIN", "Finland"],
+        ["RUS", "Russia"],
+    ]);
+    return city + ", " + countries.get(country);
 }

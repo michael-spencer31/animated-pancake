@@ -101,6 +101,11 @@ table {
 .menu li {
     padding: 3px 8px;
 }
+
+.player {
+    font-weight: bold;
+    font-size: 50px;
+}
   
 /* DROPDOWN MENU */
 .services {

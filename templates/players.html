@@ -65,20 +65,27 @@
 
                     }
                     console.log(response);
-                    document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
-                   
-                    document.getElementById('output').innerHTML = "<img src='" + response.result.headshot + "'width=170 height=170 id=hp>";
+                    document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
+
                     document.getElementById('output').innerHTML += "#" + response.result.sweaterNumber+ " ";
-                    document.getElementById('output').innerHTML += response.result.firstName['default'] + " ";
-                    document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
-                	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
+                    document.getElementById('output').innerHTML += response.result.position + ",";
+                    document.getElementById('output').innerHTML += getCountry(response.result.birthCity.default, response.result.birthCountry) + "<br>";
+                    
+                    "<div class=player>Hello, World!</div>"
+                    document.getElementById('output').innerHTML += "<b>" + response.result.firstName['default'] + "</b> ";
+                    document.getElementById('output').innerHTML += "<b>" + response.result.lastName['default'] + "</b><br>";
+
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
-                    document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";
+
+                    document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
+
+                    document.getElementById('output').innerHTML += "<img src='" + response.result.headshot + "'width=170 height=170 id=hp>";
+                    
 
                     // check if the player was drafted or not
                     if ("draftDetails" in response.result) {
                         console.log();
-                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + " by " + convertAbrv(response.result.draftDetails['teamAbbrev']) + " (" + overallPick(response.result.draftDetails['round'], response.result.draftDetails['pickInRound']) + " overall)" + "<br>";
+                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + " by " + convertAbrv(response.result.draftDetails['teamAbbrev']) + " (" + overallPick(response.result.draftDetails['round'], response.result.draftDetails['pickInRound'], response.result.draftDetails['year']) + " overall)" + "<br>";
                     } else {
                         document.getElementById('output').innerHTML += "Drafted: Undrafted<br>";
                     }
