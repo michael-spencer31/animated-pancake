@@ -19,9 +19,7 @@
 
     <script>
 
-      //getGames("01", "02", "2024");
-
-        function getGames (day, month, year) {
+    	function getGames (day, month, year) {
 
             var month_number, day_number;
             const MonthNumber = new Map([
@@ -73,6 +71,8 @@
                 contentType: 'application/json',
                 data: JSON.stringify({ 'value': url}),
                 success: function (response) {
+
+					getSchedule(response, past_day);
 
                     // determine how many games on the given day
                     var length = Object.keys(response.result.gameWeek[0].games).length;

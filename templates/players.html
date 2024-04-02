@@ -64,11 +64,13 @@
                     if (response.result.position == 'G') {
 
                     }
-    
+                    console.log(response);
                     document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
-                    document.getElementById('output').innerHTML = response.result.firstName['default'] + " ";
+                   
+                    document.getElementById('output').innerHTML = "<img src='" + response.result.headshot + "'width=170 height=170 id=hp>";
+                    document.getElementById('output').innerHTML += "#" + response.result.sweaterNumber+ " ";
+                    document.getElementById('output').innerHTML += response.result.firstName['default'] + " ";
                     document.getElementById('output').innerHTML += response.result.lastName['default'] + "<br>";
-                    document.getElementById('output').innerHTML += "<img src='" + response.result.heroImage + "'width=70 height=70><br>";
                 	document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br>";
                     document.getElementById('output').innerHTML += "Position: " + response.result.position + "<br>";

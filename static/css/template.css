@@ -71,7 +71,7 @@ table {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 15px;
     background-color: teal;
     color: #fff;
 }
@@ -113,7 +113,7 @@ table {
     position: absolute; /*WITH RESPECT TO PARENT*/
     display: none;
     border-radius: 8px;
-    top: 60px;
+    top: 40px;
 }
   
 .dropdown li + li {
@@ -148,7 +148,10 @@ th {
     z-index: 100;
 }
 
-
+#hp {
+    float: left;
+    margin: 0 15px 0 0;
+}
 
 /* textbox */
 input[type=text] {

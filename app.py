@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 from flask_cors import CORS, cross_origin
 import requests, csv, argparse
+from urllib.request import urlopen
 
 ### flask server ###
 
@@ -55,7 +56,7 @@ def search():
 @cross_origin()
 def getStandings():
 
-    url = "https://api-web.nhle.com/v1/standings/now"
+    url = "https://api-web.nhle.com/v1/standings/now/"
     resp = requests.get(url)
 
     data = resp.json()

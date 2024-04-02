@@ -13,3 +13,7 @@ function getGoalie (goalie) {
 
 
 }
+
+function getSchedule (response, past_day) {
+    console.log("Hello, World!");
+}
