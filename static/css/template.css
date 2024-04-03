@@ -9,6 +9,12 @@ body {
     max-width: 100%;
 }
 
+h3 {
+    font-size: 32px;
+    font-family:Arial, Helvetica, sans-serif
+}
+
+
 
 /* UTILITIES */
 * {
