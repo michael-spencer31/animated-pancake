@@ -60,26 +60,29 @@
                         document.getElementById('awards_output').innerHTML = "";
                         return;
                     }
-                    document.getElementById('output').innerHTML = "";
+                    document.getElementById("output").innerHTML = "";
                     document.getElementById('output').innerHTML += "<img src='" + response.result.headshot + "'width=170 height=170 id=hp>";
 
-                    document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
+                    // document.getElementById('output').innerHTML += "<img src='" + response.result.teamLogo + "'width=30 height=30>";
 
-                    document.getElementById('output').innerHTML += "#" + response.result.sweaterNumber + " ";
-                    document.getElementById('output').innerHTML += response.result.position + ", ";
-                    document.getElementById('output').innerHTML += getCountry(response.result.birthCity.default, response.result.birthCountry) + "<br>";
+                    document.getElementById('output').innerHTML += "<h5>" + "<img src='" + response.result.teamLogo + "'width=30 height=30> #" + response.result.sweaterNumber + "," + response.result.position + ", " + getCountry(response.result.birthCity.default, response.result.birthCountry) + "</h5>";
+  
                     
                     document.getElementById('output').innerHTML += "<h3>" + response.result.firstName['default'] + " " + response.result.lastName['default'] + "</h3> ";
                     //document.getElementById('output').innerHTML += "<h3>" + response.result.lastName['default'] + "</h3><br>";
                     // check if the player was drafted or not
                     if ("draftDetails" in response.result) {
-                        document.getElementById('output').innerHTML += "Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + " by " + convertAbrv(response.result.draftDetails['teamAbbrev']) + " (" + overallPick(response.result.draftDetails['round'], response.result.draftDetails['pickInRound'], response.result.draftDetails['year']) + " overall)" + "<br><br><br><br><br><br>";
+                        document.getElementById('output').innerHTML += "<h5>Drafted: " + response.result.draftDetails['year'] +" Round " + response.result.draftDetails['round'] + " pick " + response.result.draftDetails['pickInRound'] + " by " + convertAbrv(response.result.draftDetails['teamAbbrev']) + " (" + overallPick(response.result.draftDetails['round'], response.result.draftDetails['pickInRound'], response.result.draftDetails['year']) + " overall)" + "</h5><br><br><br><br><br><br>";
                     } else {
                         document.getElementById('output').innerHTML += "Drafted: Undrafted<br>";
                     }
                     document.getElementById('output').innerHTML += response.result.fullTeamName['default'] + "<br><br>";
                     document.getElementById('output').innerHTML += "<img src= /static/images/goal.png width=50 height=50 alt=goal_light> &#9; <img src= /static/images/apple.png width=50 height=50 alt=assists><br>";
-                    document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
+                    
+                    if (response.result.featuredStats['regularSeason']['subSeason']['goals'] != undefined) {
+                        document.getElementById('output').innerHTML += "Goals: " + response.result.featuredStats['regularSeason']['subSeason']['goals'] + "<br>";
+                    }
+                    
 
                     //document.getElementById('season').innerHTML = "<br><b>2023 - 2024 Season Stats</b> <br><br>";
 
